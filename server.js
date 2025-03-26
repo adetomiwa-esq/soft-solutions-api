@@ -3,12 +3,14 @@ import dotenv from "dotenv";
 import userRouter from "./routes/userRoutes.js";
 import errorHandler from "./middleware/errorHandler.js";
 import connectDB from "./config/db.js";
+import cors from "cors";
 
 dotenv.config();
 connectDB();
 
 const app = express();
 
+app.use(cors);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
