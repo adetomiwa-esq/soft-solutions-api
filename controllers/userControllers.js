@@ -1,26 +1,5 @@
 import User from "../models/userModel.js";
 
-export const userLogin = async (req, res, next) => {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email: email });
-    console.log(req.body);
-
-    if (!email || user.password !== password) {
-      const err = new Error("Password or email wrong");
-      err.status = 404;
-      return next(err);
-    }
-
-    res.status(200).json({
-      success: true,
-      user,
-    });
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const createUser = async (req, res, next) => {
   try {
     const { firstname, lastname, email, address } = req.body;
@@ -38,32 +17,11 @@ export const createUser = async (req, res, next) => {
   }
 };
 
-export const userSignUp = async (req, res, next) => {
-  const {
-    lastname,
-    firstname,
-    email,
-    password,
-    // accountNumber,
-    // accountBalance,
-  } = req.body;
+export const getAllUsers = async (req, res, next) => {
+  const users = await User.find();
+  console.log(users);
 
-  if (
-    !lastname ||
-    !firstname ||
-    !email ||
-    !password
-    // !password ||
-    // !accountNumber ||
-    // !accountBalance
-  ) {
-    const err = new Error("Input all relevant fields");
-    err.status = 400;
-    return next(err);
-  }
-
-  const user = await User.create(req.body);
-  res.status(201).json(user);
+  res.status(200).json(users);
 };
 
 export const getUser = async (req, res, next) => {
@@ -101,3 +59,31 @@ export const updateUser = async (req, res, next) => {
     user,
   });
 };
+
+// export const userSignUp = async (req, res, next) => {
+//   const {
+//     lastname,
+//     firstname,
+//     email,
+//     password,
+//     // accountNumber,
+//     // accountBalance,
+//   } = req.body;
+
+//   if (
+//     !lastname ||
+//     !firstname ||
+//     !email ||
+//     !password
+//     // !password ||
+//     // !accountNumber ||
+//     // !accountBalance
+//   ) {
+//     const err = new Error("Input all relevant fields");
+//     err.status = 400;
+//     return next(err);
+//   }
+
+//   const user = await User.create(req.body);
+//   res.status(201).json(user);
+// };

@@ -15,32 +15,9 @@ const userSchema = mongoose.Schema(
       required: [true, "please add an email"],
       unique: true,
     },
-    password: {
+    address: {
       type: String,
-      required: [true, "please add a password"],
-    },
-    userStatus: {
-      type: String,
-      required: [true, "there has to be a defined status"],
-    },
-
-    // comment the fields below to create admin account
-
-    accountNumber: {
-      type: Number,
-      required: [true, "there has to be an account number"],
-    },
-    accountBalance: {
-      type: Number,
-      required: [true, "there has to be a balance"],
-    },
-    inflow: {
-      type: Number,
-      required: [true, "there has to be inflow"],
-    },
-    outflow: {
-      type: Number,
-      required: [true, "there has to be outflow"],
+      required: [true, "please add last name"],
     },
   },
   { timestamps: true }
