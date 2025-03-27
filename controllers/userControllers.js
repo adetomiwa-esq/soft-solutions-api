@@ -60,6 +60,26 @@ export const updateUser = async (req, res, next) => {
   });
 };
 
+export const deleteUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    if (!user) {
+      const err = new Error(`User with the id ${req.params.id} not found`);
+      err.status = 404;
+      return next(err);
+    }
+
+    await User.findOneAndDelete({ _id: req.params.id });
+
+    res.status(200).json({
+      msg: `transaction with id ${req.params.id} has been successfully deleted`,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 // export const userSignUp = async (req, res, next) => {
 //   const {
 //     lastname,
