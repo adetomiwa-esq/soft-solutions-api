@@ -2,9 +2,9 @@ import User from "../models/userModel.js";
 
 export const createUser = async (req, res, next) => {
   try {
-    const { firstname, lastname, email, address } = req.body;
+    const { firstname, lastname, email, status } = req.body;
 
-    if (!firstname || !lastname || !email || !address) {
+    if (!firstname || !lastname || !email || !status) {
       const err = new Error("Please fill all fields");
       err.status = 400;
       return next(err);
