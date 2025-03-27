@@ -15,7 +15,7 @@ const userSchema = mongoose.Schema(
       required: [true, "please add an email"],
       unique: true,
     },
-    address: {
+    status: {
       type: String,
       required: [true, "please add last name"],
     },
